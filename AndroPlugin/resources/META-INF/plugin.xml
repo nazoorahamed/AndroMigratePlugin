@@ -1,0 +1,36 @@
+<idea-plugin>
+  <id>com.andro.migrate</id>
+  <name>AndroMigrate</name>
+  <version>1.0</version>
+  <vendor email="masoordonz@gmail.com" url="http://www.srilanka.com">nazoorandco</vendor>
+
+  <description>
+    i am a super star aawenda little star chan ku cha
+  </description>
+
+  <change-notes>
+    i am a super star aawenda little star chan ku cha
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <group id="AndroMigrate.MigrateTop" text="AndroMigrate" description="Migrate your code" >
+      <add-to-group group-id="MainMenu" anchor="last"/>
+      <action class="androMigrate.MigrateAction" id="AndroMigrate.MigrateAction" text="Migrate to Latest API Level"/>
+      <action class="androMigrate.MigrateAction" id="AndroMigrate.CodeChanges" text="Identify Code Changes"/>
+      <action class="androMigrate.MigrateAction" id="AndroMigrate.report" text="Show Code Changes Report"/>
+    </group>
+  </actions>
+
+</idea-plugin>
