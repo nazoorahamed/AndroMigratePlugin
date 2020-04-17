@@ -15,10 +15,16 @@ import java.util.List;
 
 public class APICodeGenerator {
 
-    public void getSourceFiles(List<File> jFile,List<File> gradleFile,List<File> manifFile){
+    public boolean getSourceFiles(List<File> jFile,List<File> gradleFile,List<File> manifFile){
 
         SetupMigration setupMigration = new SetupMigration();
-        setupMigration.preProcessCode(readManifestFile(manifFile.get(0)),readGradleFile(gradleFile.get(0)),jFile,manifFile,gradleFile);
+        Boolean isPreprocessed = setupMigration.preProcessCode(readManifestFile(manifFile.get(0)),readGradleFile(gradleFile.get(0)),jFile,manifFile,gradleFile);
+
+        if(isPreprocessed){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public ManifestDetails readManifestFile(File file){

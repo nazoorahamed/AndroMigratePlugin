@@ -20,7 +20,7 @@ public class MappingAPI {
     String Comment = "Standard AlarmManager alarms (including setExact() and setWindow()) are deffered to the next maintainance window. Check https://developer.android.com/training/monitoring-device-state/doze-standby";
 
 
-    public void MapAPI(GradleDetails gradleDetails, ManifestDetails manifestDetails, List<File> jFiles){
-
+    public boolean MapAPI(GradleDetails gradleDetails, ManifestDetails manifestDetails, List<File> jFiles){
+        return true;
     }
 }

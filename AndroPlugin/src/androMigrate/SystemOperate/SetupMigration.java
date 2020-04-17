@@ -17,11 +17,17 @@ public class SetupMigration {
     LineEditor lineEditor = new LineEditor();
     MappingAPI mappingAPI = new MappingAPI();
 
-    public void preProcessCode(ManifestDetails manifestDetails, GradleDetails gradleDetails, List<File> jFile, List<File> maniFile, List<File> gradFile) {
+    public boolean preProcessCode(ManifestDetails manifestDetails, GradleDetails gradleDetails, List<File> jFile, List<File> maniFile, List<File> gradFile) {
         GradleDetails preProcessedGradle = Gradlesetup(gradleDetails, jFile, maniFile, gradFile);
         ManifestDetails preProcessedManifest = ManifestSetup(manifestDetails);
         List<File> preProcessedJava = JavaCodeLineSetup(jFile);
-        mappingAPI.MapAPI(preProcessedGradle,preProcessedManifest,preProcessedJava);
+        Boolean isAPIMapped =  mappingAPI.MapAPI(preProcessedGradle,preProcessedManifest,preProcessedJava);
+
+        if(isAPIMapped){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public GradleDetails Gradlesetup(GradleDetails gradleDetails, List<File> jFile, List<File> maniFile, List<File> gradFile) {
@@ -51,7 +57,6 @@ public class SetupMigration {
             try {
                 //addNewLine.removeLine(gdDetails.getFile(),sdklinedetails.get("targetSdkVersion"));
                 lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("targetSdkVersion"), "        targetSdkVersion 29");
-                lineEditor.addNewLine(gdDetails.getFile(), 9, "//nothing");
 
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();

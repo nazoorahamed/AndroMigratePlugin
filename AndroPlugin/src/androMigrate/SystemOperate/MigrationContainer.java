@@ -10,7 +10,7 @@ public class MigrationContainer {
     public static List<File> GradleFile;
     public static List<File> ManifFile;
 
-    public void getAllFilePaths(String path){
+    public boolean getAllFilePaths(String path){
         JFiles = new ArrayList<>();
         GradleFile = new ArrayList<>();
         ManifFile = new ArrayList<>();
@@ -20,8 +20,17 @@ public class MigrationContainer {
         System.out.println("Java Files : "+JFiles.size());
         System.out.println("Manifest files : "+ManifFile.size());
 
-        APICodeGenerator codeGenerator = new APICodeGenerator();
-        codeGenerator.getSourceFiles(JFiles,GradleFile,ManifFile);
+        if(JFiles.size()!=0 && GradleFile.size() != 0 && ManifFile.size() !=0 ){
+            APICodeGenerator codeGenerator = new APICodeGenerator();
+            Boolean isSourceFiles = codeGenerator.getSourceFiles(JFiles,GradleFile,ManifFile);
+            if(isSourceFiles){
+                return true;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
+        }
     }
 
     public List<File> listF(String path) {

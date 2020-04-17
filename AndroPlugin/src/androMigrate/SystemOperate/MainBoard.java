@@ -10,14 +10,19 @@ public class MainBoard {
     public static List<File> GradleFile;
     public static List<File> ManifFile;
 
-    public void InitialteMigration(String fname){
+    public boolean InitialteMigration(String fname){
         JFiles = new ArrayList<>();
         GradleFile = new ArrayList<>();
         ManifFile = new ArrayList<>();
 
         MigrationContainer mc = new MigrationContainer();
-        mc.getAllFilePaths(fname);
+        boolean isFilesareavailable =  mc.getAllFilePaths(fname);
 
+        if(isFilesareavailable){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public static void main(String[] args) throws Exception {
