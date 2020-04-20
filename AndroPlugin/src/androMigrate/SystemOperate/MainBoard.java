@@ -17,7 +17,7 @@ public class MainBoard {
 
         MigrationContainer mc = new MigrationContainer();
         boolean isFilesareavailable =  mc.getAllFilePaths(fname);
-
+        System.out.println("END");
         if(isFilesareavailable){
             return true;
         }else {

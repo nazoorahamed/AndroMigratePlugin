@@ -86,6 +86,20 @@ public class SetupMigration {
             }
         }
 
+            try {
+
+                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("buildToolsVersion"), "     buildToolsVersion '28.0.3'");
+
+                gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
+                dependenciesList = gradleDetails.getDependencies();
+                sdkLine = gradleDetails.getTargetsdkline();
+                targersdk = Integer.parseInt(gradleDetails.getTargetSdk());
+                minSdk = Integer.parseInt(gradleDetails.getMinSdk());
+                compilesdk = Integer.parseInt(gradleDetails.getCompileSdk());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         //check dependencies
         for (int i = 0; i < dependenciesList.size(); i++) {
             if (dependenciesList.get(i).getCodeLine().contains("com.android.support:appcompat-v7")) {
