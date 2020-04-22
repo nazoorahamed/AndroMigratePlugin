@@ -2,6 +2,7 @@ package androMigrate.FileReader.ManifestReader;
 
 import java.io.File;
 import java.util.List;
+import java.util.TreeMap;
 
 public class ManifestDetails {
     private File file;
@@ -9,13 +10,23 @@ public class ManifestDetails {
     private List<ManifestLineDetails> usesPermission;
     private List<ManifestLineDetails> services;
     private List<ManifestLineDetails> codeDetails;
+    private TreeMap<String,Integer> appLineDetails;
 
-    public ManifestDetails(File pfile,ManifestLineDetails usesSdk, List<ManifestLineDetails> usesPermission, List<ManifestLineDetails> services, List<ManifestLineDetails> details) {
+    public ManifestDetails(File pfile,ManifestLineDetails usesSdk, List<ManifestLineDetails> usesPermission, List<ManifestLineDetails> services, List<ManifestLineDetails> details,TreeMap<String,Integer> appLineDetail) {
         this.file = pfile;
         this.usesSdk = usesSdk;
         this.usesPermission = usesPermission;
         this.services = services;
         this.codeDetails = details;
+        this.appLineDetails = appLineDetail;
+    }
+
+    public TreeMap<String, Integer> getAppLineDetails() {
+        return appLineDetails;
+    }
+
+    public void setAppLineDetails(TreeMap<String, Integer> appLineDetails) {
+        this.appLineDetails = appLineDetails;
     }
 
     public File getFile() {

@@ -65,8 +65,11 @@ public class GradleFIleReader {
                 targerSdkLine.put("buildToolsVersion",detailsLine.get(i).getLineNumber());
             }else
             if(line.contains("defaultConfig")){
-                System.out.println( detailsLine.get(i).getLineNumber()+" : True");
-                targerSdkLine.put("defaultConfig",detailsLine.get(i).getLineNumber());
+                System.out.println( detailsLine.get(i).getLineNumber()+1+" : True");
+                targerSdkLine.put("defaultConfig",detailsLine.get(i).getLineNumber()+1);
+            }
+            if(line.contains("testInstrumentationRunner")){
+                targerSdkLine.put("testInstrumentationRunner",detailsLine.get(i).getLineNumber());
             }
         }
         //depends = findDependencies(detailsLine);

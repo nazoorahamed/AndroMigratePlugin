@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class ManifestFileReader {
 
@@ -36,6 +37,7 @@ public class ManifestFileReader {
         List<ManifestLineDetails> detailsLine = readDetails(file);
         List<ManifestLineDetails> usesPermission = new ArrayList<>();
         List<ManifestLineDetails> services = new ArrayList<>();
+        TreeMap<String,Integer> appLineDetails = new TreeMap<>();
         ManifestLineDetails usesSdk = null;
 
         for (int i =0;i<detailsLine.size();i++){
@@ -59,7 +61,11 @@ public class ManifestFileReader {
                 ManifestLineDetails jr = new ManifestLineDetails(file,linenumber,line);
                 services.add(jr);
             }
+
+            if (line.contains("</application>")){
+                appLineDetails.put("appLine",detailsLine.get(i).getLineNumber());
+            }
         }
-        return new ManifestDetails(file,usesSdk,usesPermission,services,detailsLine);
+        return new ManifestDetails(file,usesSdk,usesPermission,services,detailsLine,appLineDetails);
     }
 }
