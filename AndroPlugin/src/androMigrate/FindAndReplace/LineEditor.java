@@ -1,9 +1,11 @@
 package androMigrate.FindAndReplace;
 
+import androMigrate.SystemOperate.GenerateReport;
+
 import java.io.*;
 
 public class LineEditor {
-
+    GenerateReport report;
     public void addNewLine (File inFile, int lineno, String lineToBeInserted)
             throws Exception {
         // temp file
@@ -26,6 +28,8 @@ public class LineEditor {
             out.println(thisLine);
             i++;
         }
+        report.AddToReportFile(inFile,lineToBeInserted,lineno,"Line Added");
+
         out.flush();
         out.close();
         in.close();
@@ -69,6 +73,7 @@ public class LineEditor {
                 i++;
             }
         }
+        report.AddToReportFile(inFile,currentLine,lineno,"Line Removed");
         out.flush();
         out.close();
         in.close();

@@ -15,12 +15,13 @@ public class MigrateAction extends AnAction {
         System.out.println(e.getProject().getBasePath());
         MainBoard mainBoard = new MainBoard();
         Boolean isInitialized=  mainBoard.InitialteMigration(e.getProject().getBasePath());
+        String getfirstletter = mainBoard.getString();
         e.getProject().save();
 
         if(isInitialized){
-            Messages.showMessageDialog(e.getProject(),"Migration Completed !","API Migration", Messages.getInformationIcon());
+            Messages.showMessageDialog(e.getProject(),"Migration Completed !"+getfirstletter,"API Migration", Messages.getInformationIcon());
         }else {
-            Messages.showMessageDialog(e.getProject(),"Migration Failed !","API Migration", Messages.getInformationIcon());
+            Messages.showMessageDialog(e.getProject(),"Migration Failed !"+getfirstletter,"API Migration", Messages.getInformationIcon());
 
         }
     }

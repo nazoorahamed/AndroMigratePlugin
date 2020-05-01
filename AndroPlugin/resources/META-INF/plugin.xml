@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.andro.migrate</id>
   <name>AndroMigrate</name>
-  <version>1.3</version>
+  <version>1.5</version>
   <vendor email="masoordonz@gmail.com" url="http://www.srilanka.com">nazoorandco</vendor>
 
   <description>
