@@ -28,7 +28,7 @@ public class LineEditor {
             out.println(thisLine);
             i++;
         }
-        report.AddToReportFile(inFile,lineToBeInserted,lineno,"Line Added");
+    //    report.AddToReportFile(inFile,lineToBeInserted,lineno,"Line Added");
 
         out.flush();
         out.close();
@@ -73,7 +73,7 @@ public class LineEditor {
                 i++;
             }
         }
-        report.AddToReportFile(inFile,currentLine,lineno,"Line Removed");
+       // report.AddToReportFile(inFile,currentLine,lineno,"Line Removed");
         out.flush();
         out.close();
         in.close();

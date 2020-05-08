@@ -49,7 +49,6 @@ public class GradleFIleReader {
 
             if (line.contains("targetSdkVersion")){
                 System.out.println( detailsLine.get(i).getLineNumber()+" : True");
-                changeSdkLevel(detailsLine.get(i));
                 targetSdk = findNumber(line);
                 targerSdkLine.put("targetSdkVersion",detailsLine.get(i).getLineNumber());
             }else if (line.contains("compileSdkVersion")){
@@ -82,43 +81,21 @@ public class GradleFIleReader {
 
     public List<GradleDependencies> findDependencies(File file,List<GradleLineDetails> lines){
         int linenumber = 0;
-        List<String> depends = new ArrayList<>();
         List<GradleDependencies> gl = new ArrayList<>();
-        for (int i=0;i<lines.size();i++){
-            if(lines.get(i).getCodeLine().contains("dependencies")){
-                linenumber = lines.get(i).getLineNumber();
-                System.out.println("ves : "+linenumber);
+        for (GradleLineDetails line : lines) {
+            if (line.getCodeLine().contains("dependencies")) {
+                linenumber = line.getLineNumber();
+                System.out.println("ves : " + linenumber);
             }
         }
         if (linenumber != 0){
             while (!lines.get(linenumber).getCodeLine().contains("}")){
                 linenumber++;
                 GradleDependencies gd = new GradleDependencies(file,linenumber,lines.get(linenumber-1).getCodeLine());
-                depends.add(lines.get(linenumber-1).getCodeLine());
                 gl.add(gd);
             }
         }
         return gl;
-    }
-
-    public void changeSdkLevel(GradleLineDetails gld){
-
-    }
-
-    public void changeSdkToolVersion(GradleLineDetails gld){
-
-    }
-
-    public void changeAppCompactSupport(GradleLineDetails gld){
-
-    }
-
-    public void changeDesignSupport(GradleLineDetails gld){
-
-    }
-
-    public void changeConstrainsSupport(GradleLineDetails gld){
-
     }
 
     public String findNumber(String string){

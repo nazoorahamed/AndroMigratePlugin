@@ -2,14 +2,14 @@
   <id>com.andro.migrate</id>
   <name>AndroMigrate</name>
   <version>1.5</version>
-  <vendor email="masoordonz@gmail.com" url="http://www.srilanka.com">nazoorandco</vendor>
+  <vendor email="nasoodonz@gmail.com" url="http://www.nazoor.com">nazoorandco</vendor>
 
   <description>
-    i am a super star aawenda little star chan ku cha
+    AndroMigrate is plugin which migrate the code into latest APi level and it helps to identify the code changes for latest API version
   </description>
 
   <change-notes>
-    i am a super star aawenda little star chan ku cha
+    AndroMigrate is plugin which migrate the code into latest APi level and it helps to identify the code changes for latest API version
   </change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->

@@ -31,13 +31,6 @@ public class SetupMigration {
     }
 
     public GradleDetails Gradlesetup(GradleDetails gradleDetails, List<File> jFile, List<File> maniFile, List<File> gradFile) {
-        System.out.println("Pre processing :" + gradleDetails.getTargetsdkline().headMap("29"));
-        System.out.println(" line line " + gradleDetails.getTargetsdkline());
-
-
-        for (int i = 0; i < gradleDetails.getDependencies().size(); i++) {
-            System.out.println("depends" + gradleDetails.getDependencies().get(i).getCodeLine() + gradleDetails.getDependencies().get(i).getLineNumber());
-        }
         return GradleMapping(gradleDetails, gradleDetails.getDependencies(), gradleDetails.getTargetsdkline());
     }
 

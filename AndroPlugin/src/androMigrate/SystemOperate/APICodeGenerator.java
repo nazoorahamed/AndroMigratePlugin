@@ -33,9 +33,7 @@ public class APICodeGenerator {
 
             ManifestFileReader mr = new ManifestFileReader();
             manifestDetails = mr.getManifestDetails(file);
-            for (int k =0;k<manifestDetails.getCodeDetails().size();k++){
-               // System.out.println("manifest : "+manifestDetails.getCodeDetails().get(k).getCodeLine() + ": "+ manifestDetails.getCodeDetails().get(k).getLineNumber());
-        }
+
         return manifestDetails;
     }
 

@@ -40,30 +40,30 @@ public class ManifestFileReader {
         TreeMap<String,Integer> appLineDetails = new TreeMap<>();
         ManifestLineDetails usesSdk = null;
 
-        for (int i =0;i<detailsLine.size();i++){
+        for (ManifestLineDetails manifestLineDetails : detailsLine) {
 
-            String line = detailsLine.get(i).getCodeLine();
-            int linenumber = detailsLine.get(i).getLineNumber();
+            String line = manifestLineDetails.getCodeLine();
+            int linenumber = manifestLineDetails.getLineNumber();
 
-            if (line.contains("uses-sdk")){
-                System.out.println( detailsLine.get(i).getLineNumber()+" : Manifest uses sdk True");
-                usesSdk = new ManifestLineDetails(file,linenumber,detailsLine.get(i).getCodeLine());
+            if (line.contains("uses-sdk")) {
+                System.out.println(manifestLineDetails.getLineNumber() + " : Manifest uses sdk True");
+                usesSdk = new ManifestLineDetails(file, linenumber, manifestLineDetails.getCodeLine());
             }
 
-            if (line.contains("uses-permission")){
-                System.out.println( detailsLine.get(i).getLineNumber()+" : Manifest uses permission True");
-                ManifestLineDetails jr = new ManifestLineDetails(file,linenumber,line);
+            if (line.contains("uses-permission")) {
+                System.out.println(manifestLineDetails.getLineNumber() + " : Manifest uses permission True");
+                ManifestLineDetails jr = new ManifestLineDetails(file, linenumber, line);
                 usesPermission.add(jr);
             }
 
-            if (line.contains("service")){
-                System.out.println( detailsLine.get(i).getLineNumber()+" : Manifest service True");
-                ManifestLineDetails jr = new ManifestLineDetails(file,linenumber,line);
+            if (line.contains("service")) {
+                System.out.println(manifestLineDetails.getLineNumber() + " : Manifest service True");
+                ManifestLineDetails jr = new ManifestLineDetails(file, linenumber, line);
                 services.add(jr);
             }
 
-            if (line.contains("</application>")){
-                appLineDetails.put("appLine",detailsLine.get(i).getLineNumber());
+            if (line.contains("</application>")) {
+                appLineDetails.put("appLine", manifestLineDetails.getLineNumber());
             }
         }
         return new ManifestDetails(file,usesSdk,usesPermission,services,detailsLine,appLineDetails);

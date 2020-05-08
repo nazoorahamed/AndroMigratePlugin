@@ -7,29 +7,31 @@ import androMigrate.FindAndReplace.LineEditor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MappingAPI {
-    int API_LEVEL = 28;
-    String METHOD = "startForeground";
-    String STATUS = "Active";
-    String NEW_METHOD_AVAILABLE = "null";
-    String NEW_METHOD = "null";
-    String METHOD_PARAMETER = "replace";
-    String PARAMETER = "(Locale.Category.DISPLAY)";
-    String CODE_SINPPET = "tryandcatch";
-    String CATCH_LEVEL = "O";
-    int NEW_API_LEVEL = 29;
-    String GRADLE_CHANGE = "yes";
-    String GRADLE_CODE = "use 'apache.http'";
-    String MANIF_CHANGE = "add";
-    String PERMISSION_NAME = "FOREGROUND_SERVICE";
-    String PERMISISON = "    <uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\"/>";
-    String RUNTIME_REQ = "yes";
-    String MANIF_APP_TYPE = "PROVIDE";
-    String MANIF_APP = "<uses-library android:name=\"org.apache.http.legacy\" android:required=\"false\"/>";
-    String COMMENT = "Apps that target Android 9 or higher and use foreground services must request the FOREGROUND_SERVICE permission. This is a normal permission";
-    String REFER_LINK = "https://developer.android.com/about/versions/pie/android-9.0-changes-28#fg-svc";
+    int API_LEVEL;
+    String METHOD;
+    String STATUS;
+    String NEW_METHOD_AVAILABLE;
+    String NEW_METHOD;
+    String METHOD_PARAMETER;
+    String PARAMETER;
+    String CODE_SINPPET;
+    String CATCH_LEVEL;
+    int NEW_API_LEVEL;
+    String GRADLE_CHANGE;
+    String GRADLE_CODE;
+    String MANIF_CHANGE;
+    String PERMISSION_NAME;
+    String PERMISISON;
+    String RUNTIME_REQ;
+    String MANIF_APP_TYPE;
+    String MANIF_APP;
+    String COMMENT;
+    String REFER_LINK;
+
 
     APICodeGenerator codeGenerator = new APICodeGenerator();
     LineEditor lineEditor = new LineEditor();
@@ -38,23 +40,59 @@ public class MappingAPI {
     List<File> MainJavafiles;
     List<JavaLineDetails> CurrentJavaFile;
 
-    public boolean MapAPI(GradleDetails gradleDetails, ManifestDetails manifestDetails, List<File> jFiles){
-        MainGradDetails =gradleDetails;
+    public boolean MapAPI(GradleDetails gradleDetails, ManifestDetails manifestDetails, List<File> jFiles) {
+        MainGradDetails = gradleDetails;
         MainManifDetails = manifestDetails;
         MainJavafiles = jFiles;
-        for(int i=0;i<MainJavafiles.size();i++){
+        MainBoard app = new MainBoard();
+        // insert three new rows
+        app.insert("Raw Materials", 3000);
+        app.insert("Semifinished Goods", 4000);
+        app.insert("Finished Goods", 5000);
+
+        List<String> methodDetails = new ArrayList<>();
+        List<String> allMethod = new ArrayList<>();
+        allMethod = app.readAllmethods();
+
+
+        for (int i = 0; i < MainJavafiles.size(); i++) {
             CurrentJavaFile = codeGenerator.readJavaFile(MainJavafiles.get(i));
-            for (int k=0;k<CurrentJavaFile.size();k++){
+            for (int k = 0; k < CurrentJavaFile.size(); k++) {
                 String currentLine = CurrentJavaFile.get(k).getCodeLine().trim();
-                if(currentLine.contains("(")&&currentLine.contains(")")){
+                if (currentLine.contains("(") && currentLine.contains(")")) {
                     String[] splitParameter = currentLine.split("(?=\\()");
-                   // System.out.println(splitParameter[0]);
+                    // System.out.println(splitParameter[0]);
                     currentLine = splitParameter[0];
+                    for (int l = 0; l < allMethod.size(); l++) {
+                        if (currentLine.equals(allMethod.get(l))) {
+                            // System.out.println("sooora"+javaLineDetails.get(k).getLastLineDetail().values() + " :: " + javaLineDetails.get(k).getFileP().getName());
+                            methodDetails = app.readfromFile(currentLine.trim());
+
+                            API_LEVEL = Integer.parseInt(methodDetails.get(0));
+                            METHOD = methodDetails.get(1);
+                            STATUS = methodDetails.get(2);
+                            NEW_METHOD_AVAILABLE = methodDetails.get(3);
+                            NEW_METHOD = methodDetails.get(4);
+                            METHOD_PARAMETER = methodDetails.get(5);
+                            PARAMETER = methodDetails.get(6);
+                            CODE_SINPPET = methodDetails.get(7);
+                            CATCH_LEVEL = methodDetails.get(8);
+                            NEW_API_LEVEL = Integer.parseInt(methodDetails.get(9));
+                            GRADLE_CHANGE = methodDetails.get(10);
+                            GRADLE_CODE = methodDetails.get(11);
+                            MANIF_CHANGE = methodDetails.get(12);
+                            PERMISSION_NAME = methodDetails.get(13);
+                            PERMISISON = methodDetails.get(14);
+                            RUNTIME_REQ = methodDetails.get(15);
+                            MANIF_APP_TYPE = methodDetails.get(16);
+                            MANIF_APP = methodDetails.get(17);
+                            COMMENT = methodDetails.get(18);
+                            REFER_LINK = methodDetails.get(19);
+
+                            findMappingInstance(MainGradDetails, MainManifDetails, MainJavafiles.get(i), currentLine, CurrentJavaFile.get(k), CurrentJavaFile);
+                        }
+                    }
                 }
-
-               // System.out.println("sooora"+javaLineDetails.get(k).getLastLineDetail().values() + " :: " + javaLineDetails.get(k).getFileP().getName());
-                findMappingInstance(MainGradDetails, MainManifDetails,MainJavafiles.get(i),currentLine,CurrentJavaFile.get(k),CurrentJavaFile);
-
             }
         }
         return true;
@@ -170,7 +208,10 @@ public class MappingAPI {
                             changeNonMethodRemoveGradleManifAndPermission(gradleDetails,manifestDetails,false,false,true);
                         }
                     }
-                } else if (GRADLE_CHANGE.equals("yes")) {
+                }else if(GRADLE_CHANGE.equals("null")){
+                    changeNonMethodAddGradleManifAndPermission(gradleDetails,manifestDetails,false,false,false,false);
+                }
+                else if (GRADLE_CHANGE.equals("yes")) {
                     //only Gradle change
                     changeNonMethodAddGradleManifAndPermission(gradleDetails,manifestDetails,false,false,false,true);
                 }
@@ -297,7 +338,11 @@ public class MappingAPI {
                             }
                         }
 
-                    } else if (GRADLE_CHANGE.equals("yes")) {
+                    }else if(GRADLE_CHANGE.equals("null")){
+                        changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,false,false,false,false,true);
+
+                    }
+                    else if (GRADLE_CHANGE.equals("yes")) {
                         //only Gradle change
                         changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,false,false,false,true,true);
 
@@ -316,10 +361,10 @@ public class MappingAPI {
     public void AddOnlyComment(JavaLineDetails details,List<JavaLineDetails> javaLineDetails) {
         CurrentJavaFile = javaLineDetails;
         try {
-            lineEditor.addNewLine(details.getFileP(),details.getLineNumber(),COMMENT);
-            lineEditor.addNewLine(details.getFileP(),details.getLineNumber(),"<!-- Refer this link to know more " + REFER_LINK + "   -->");
-            lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "<!--        Code Generated by AndroMigrate           -->");
-            CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
+            lineEditor.addNewLine(details.getFileP(),details.getLineNumber(),COMMENT +" */");
+            lineEditor.addNewLine(details.getFileP(),details.getLineNumber()," Refer this link to know more " + REFER_LINK );
+            lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "/*        Code Generated by AndroMigrate           ");
+            //CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -341,30 +386,30 @@ public class MappingAPI {
         try {
 
             if(METHOD_PARAMETER.equals("same")){
-                String newLine = NEW_METHOD.trim()+"("+sameParameter+")"+";";
+                String newLine = "\t"+NEW_METHOD.trim()+sameParameter+";";
                 lineEditor.replaceLine(details.getFileP(),details.getLineNumber(),newLine);
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), COMMENT);
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), "<!-- Refer this link to know more " + REFER_LINK + "   -->");
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), "<!--        Code Generated by AndroMigrate           -->");
-                CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), COMMENT+"  */");
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "Refer this link to know more " + REFER_LINK);
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "/*        Code Generated by AndroMigrate           ");
+              //  CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
             }
             else if(METHOD_PARAMETER.equals("replace")){
-                String newLine = NEW_METHOD.trim()+"("+PARAMETER+")"+";";
+                String newLine = "\t"+NEW_METHOD.trim()+PARAMETER+";";
                 lineEditor.replaceLine(details.getFileP(),details.getLineNumber(),newLine);
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), COMMENT);
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), "<!-- Refer this link to know more " + REFER_LINK + "   -->");
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), "<!--        Code Generated by AndroMigrate           -->");
-                CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), COMMENT+"  */");
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), " Refer this link to know more " + REFER_LINK);
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "/*       Code Generated by AndroMigrate           ");
+               // CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
 
             }
             else if(METHOD_PARAMETER.equals("addreplace")){
                 String parameter = PARAMETER.replace("addreplace",sameParameter);
-                String newLine = NEW_METHOD.trim()+"("+parameter+")"+";";
+                String newLine = NEW_METHOD.trim()+parameter+";";
                 lineEditor.replaceLine(details.getFileP(),details.getLineNumber(),newLine);
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), COMMENT);
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), "<!-- Refer this link to know more " + REFER_LINK + "   -->");
-                lineEditor.addNewLine(MainManifDetails.getFile(), details.getLineNumber(), "<!--        Code Generated by AndroMigrate           -->");
-                CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), COMMENT+"  */");
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), " Refer this link to know more " + REFER_LINK );
+                lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "/*        Code Generated by AndroMigrate           ");
+             //   CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
             }
             if(isAdd){
                 changeNonMethodAddGradleManifAndPermission(MainGradDetails,MainManifDetails,provider,lib,Permission,isGradleChange);
