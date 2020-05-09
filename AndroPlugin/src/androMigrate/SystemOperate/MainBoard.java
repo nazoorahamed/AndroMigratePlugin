@@ -1,6 +1,7 @@
 package androMigrate.SystemOperate;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -10,7 +11,7 @@ public class MainBoard {
     public static List<File> JFiles;
     public static List<File> GradleFile;
     public static List<File> ManifFile;
-
+    public static String baseReportFile;
 
     public boolean InitialteMigration(String fname){
         JFiles = new ArrayList<>();
@@ -23,6 +24,16 @@ public class MainBoard {
         // insert three new rows
 //        readfromFile("HttpURLConnection");
 //        readAllmethods();
+
+        try {
+            baseReportFile = fname+"/MigrationReport.txt";
+//            File creatFile = new File(baseReportFile);
+//            creatFile.createNewFile(); // if file already exists will do nothing
+//            FileOutputStream oFile = new FileOutputStream(creatFile, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         if(isFilesareavailable){
             return true;

@@ -49,7 +49,7 @@ public class SetupMigration {
         if (targersdk < 29) {
             try {
                 //addNewLine.removeLine(gdDetails.getFile(),sdklinedetails.get("targetSdkVersion"));
-                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("targetSdkVersion"), "        targetSdkVersion 29");
+                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("targetSdkVersion"), "        targetSdkVersion 29",true);
 
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();
@@ -66,7 +66,7 @@ public class SetupMigration {
         if (compilesdk < 29) {
             try {
 
-                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("compileSdkVersion"), "    compileSdkVersion 29");
+                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("compileSdkVersion"), "    compileSdkVersion 29",true);
 
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();
@@ -81,7 +81,7 @@ public class SetupMigration {
 
             try {
 
-                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("buildToolsVersion"), "     buildToolsVersion '28.0.3'");
+                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("buildToolsVersion"), "     buildToolsVersion '28.0.3'",true);
 
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();
@@ -97,7 +97,7 @@ public class SetupMigration {
         for (int i = 0; i < dependenciesList.size(); i++) {
             if (dependenciesList.get(i).getCodeLine().contains("com.android.support:appcompat-v7")) {
                 System.out.println(dependenciesList.get(i).getLineNumber() + " yes depend");
-                lineEditor.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.appcompat:appcompat:1.0.0'");
+                lineEditor.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.appcompat:appcompat:1.0.0'",true);
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();
                 sdkLine = gradleDetails.getTargetsdkline();
@@ -107,7 +107,7 @@ public class SetupMigration {
             }
             if (dependenciesList.get(i).getCodeLine().contains("com.android.support.constraint:constraint-layout")) {
                 System.out.println(dependenciesList.get(i).getLineNumber() + " yes depend");
-                lineEditor.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'");
+                lineEditor.replaceLine(gradleDetails.getFile(), dependenciesList.get(i).getLineNumber(), "    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'",true);
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();
                 sdkLine = gradleDetails.getTargetsdkline();
@@ -131,7 +131,7 @@ public class SetupMigration {
             System.out.println("no sdk line found");
         } else {
             try {
-                lineEditor.removeLine(manifestDetails.getFile(), usesSdk.getLineNumber());
+                lineEditor.removeLine(manifestDetails.getFile(), usesSdk.getLineNumber(),true);
                 manifestDetails = codeGenerator.readManifestFile(manifestDetails.getFile());
                 usesSdk = manifestDetails.getUsesSdk();
                 usesPermission = manifestDetails.getUsesPermission();

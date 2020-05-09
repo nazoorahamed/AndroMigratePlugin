@@ -28,8 +28,8 @@
     <group id="AndroMigrate.MigrateTop" text="AndroMigrate" description="Migrate your code" >
       <add-to-group group-id="MainMenu" anchor="last"/>
       <action class="androMigrate.MigrateAction" id="AndroMigrate.MigrateAction" text="Migrate to Latest API Level"/>
-      <action class="androMigrate.MigrateAction" id="AndroMigrate.CodeChanges" text="Identify Code Changes"/>
-      <action class="androMigrate.MigrateAction" id="AndroMigrate.report" text="Show Code Changes Report"/>
+      <action class="androMigrate.CodeChangesAction" id="AndroMigrate.CodeChanges" text="Identify Code Changes"/>
+      <action class="androMigrate.ReportAction" id="AndroMigrate.report" text="Show Code Changes Report"/>
     </group>
   </actions>
 

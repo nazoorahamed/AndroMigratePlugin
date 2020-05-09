@@ -5,8 +5,8 @@ import androMigrate.SystemOperate.GenerateReport;
 import java.io.*;
 
 public class LineEditor {
-    GenerateReport report;
-    public void addNewLine (File inFile, int lineno, String lineToBeInserted)
+    GenerateReport report = new GenerateReport();
+    public void addNewLine (File inFile, int lineno, String lineToBeInserted, boolean ismethod)
             throws Exception {
         // temp file
         File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/2nd Semester/FYP/ProjectFile/src/main/java/TemptFile/tempt.java");
@@ -28,7 +28,10 @@ public class LineEditor {
             out.println(thisLine);
             i++;
         }
-    //    report.AddToReportFile(inFile,lineToBeInserted,lineno,"Line Added");
+        if(ismethod){
+            report.AddToReportFile(inFile,lineToBeInserted,lineno,"Line Added");
+        }
+
 
         out.flush();
         out.close();
@@ -36,10 +39,10 @@ public class LineEditor {
         inFile.delete();
         outFile.renameTo(inFile);
     }
-    public  void replaceLine(File file,int lineno,String line){
+    public  void replaceLine(File file,int lineno,String line, boolean ismethod){
         try {
-            removeLine(file,lineno);
-            addNewLine(file, lineno, line);
+            removeLine(file,lineno,ismethod);
+            addNewLine(file, lineno, line,ismethod);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +50,7 @@ public class LineEditor {
     }
 
 
-    public void removeLine(File inFile, int lineno) throws Exception{
+    public void removeLine(File inFile, int lineno, boolean ismethod) throws Exception{
         File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/2nd Semester/FYP/ProjectFile/src/main/java/TemptFile/tempt.java");
 
         // input
@@ -73,7 +76,9 @@ public class LineEditor {
                 i++;
             }
         }
-       // report.AddToReportFile(inFile,currentLine,lineno,"Line Removed");
+        if (ismethod){
+            report.AddToReportFile(inFile,currentLine,lineno,"Line Removed");
+        }
         out.flush();
         out.close();
         in.close();
