@@ -8,9 +8,12 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 
+import static androMigrate.SystemOperate.MappingAPI.ShowOnly;
+
 public class MigrateAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
+        ShowOnly = false;
         e.getProject().save();
         System.out.println(e.getProject().getBasePath());
         MainBoard mainBoard = new MainBoard();
