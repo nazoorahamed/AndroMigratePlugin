@@ -80,8 +80,10 @@ public class SetupMigration {
         }
 
             try {
+                if(sdklinedetails.get("buildToolsVersion") != null){
+                    lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("buildToolsVersion"), "     buildToolsVersion '28.0.3'",true);
 
-                lineEditor.replaceLine(gdDetails.getFile(), sdklinedetails.get("buildToolsVersion"), "     buildToolsVersion '28.0.3'",true);
+                }
 
                 gradleDetails = codeGenerator.readGradleFile(gradleDetails.getFile());
                 dependenciesList = gradleDetails.getDependencies();

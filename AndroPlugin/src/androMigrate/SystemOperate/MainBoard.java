@@ -27,9 +27,9 @@ public class MainBoard {
 
         try {
             baseReportFile = fname+"/MigrationReport.txt";
-//            File creatFile = new File(baseReportFile);
-//            creatFile.createNewFile(); // if file already exists will do nothing
-//            FileOutputStream oFile = new FileOutputStream(creatFile, false);
+            File creatFile = new File(baseReportFile);
+            creatFile.createNewFile(); // if file already exists will do nothing
+            FileOutputStream oFile = new FileOutputStream(creatFile, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,12 +54,6 @@ public class MainBoard {
         mc.getAllFilePaths(fname);
 //        createNewTable();
 //        MainBoard app = new MainBoard();
-//        // insert three new rows
-//        app.insert("Raw Materials", 3000);
-//        app.insert("Semifinished Goods", 4000);
-//        app.insert("Finished Goods", 5000);
-//        app.readfromFile("HttpURLConnection");
-
 
 
     }

@@ -108,7 +108,7 @@ public class MappingAPI {
                     if (MANIF_CHANGE.equals("add")) {
                         if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                             //change both permission and manifest body
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //add provider and permission
                                 changeNonMethodAddGradleManifAndPermission(gradleDetails,manifestDetails,true,false,true,true);
 
@@ -118,7 +118,7 @@ public class MappingAPI {
 
                             }
                         } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //add provider
                                 changeNonMethodAddGradleManifAndPermission(gradleDetails,manifestDetails,true,false,false,true);
 
@@ -135,7 +135,7 @@ public class MappingAPI {
                     } else if (MANIF_CHANGE.equals("remove")) {
                         if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                             //remove both permission and manifest body
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //remove provider and permission
                                 changeNonMethodRemoveGradleManifAndPermission(gradleDetails,manifestDetails,true,false,true);
 
@@ -145,7 +145,7 @@ public class MappingAPI {
 
                             }
                         } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //remove provider
                                 changeNonMethodRemoveGradleManifAndPermission(gradleDetails,manifestDetails,true,false,false);
                             } else if (MANIF_APP_TYPE.equals("LIB")) {
@@ -164,7 +164,7 @@ public class MappingAPI {
                     if (MANIF_CHANGE.equals("add")) {
                         if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                             //change both permission and manifest body
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //add provider and permission
                                 changeNonMethodAddGradleManifAndPermission(gradleDetails,manifestDetails,true,false,true,false);
                             } else if (MANIF_APP_TYPE.equals("LIB")) {
@@ -172,7 +172,7 @@ public class MappingAPI {
                                 changeNonMethodAddGradleManifAndPermission(gradleDetails,manifestDetails,false,true,true,false);
                             }
                         } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //add provider
                                 changeNonMethodAddGradleManifAndPermission(gradleDetails,manifestDetails,true,false,false,false);
                             } else if (MANIF_APP_TYPE.equals("LIB")) {
@@ -187,7 +187,7 @@ public class MappingAPI {
 
                         if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                             //remove both permission and manifest body
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //remove provider and permission
                                 changeNonMethodRemoveGradleManifAndPermission(gradleDetails,manifestDetails,true,false,true);
                             } else if (MANIF_APP_TYPE.equals("LIB")) {
@@ -195,7 +195,7 @@ public class MappingAPI {
                                 changeNonMethodRemoveGradleManifAndPermission(gradleDetails,manifestDetails,false,true,true);
                             }
                         } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                            if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                            if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                 //remove provider
                                 changeNonMethodRemoveGradleManifAndPermission(gradleDetails,manifestDetails,true,false,false);
                             } else if (MANIF_APP_TYPE.equals("LIB")) {
@@ -229,7 +229,7 @@ public class MappingAPI {
                         if (MANIF_CHANGE.equals("add")) {
                             if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                                 //change both permission and manifest body
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //add provider and permission
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,true,true,true);
 
@@ -239,7 +239,7 @@ public class MappingAPI {
 
                                 }
                             } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //add provider
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,false,true,true);
 
@@ -256,7 +256,7 @@ public class MappingAPI {
                         } else if (MANIF_CHANGE.equals("remove")) {
                             if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                                 //remove both permission and manifest body
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //remove provider and permission
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,true,false,false);
 
@@ -266,7 +266,7 @@ public class MappingAPI {
 
                                 }
                             } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //remove provider
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,false,false,false);
 
@@ -286,7 +286,7 @@ public class MappingAPI {
                         if (MANIF_CHANGE.equals("add")) {
                             if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                                 //change both permission and manifest body
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //add provider and permission
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,true,false,true);
 
@@ -296,7 +296,7 @@ public class MappingAPI {
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,false,true,true,false,true);
                                 }
                             } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //add provider
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,false,false,true);
 
@@ -312,7 +312,7 @@ public class MappingAPI {
                         } else if (MANIF_CHANGE.equals("remove")) {
                             if (!PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
                                 //remove both permission and manifest body
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //remove provider and permission
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,true,false,false);
 
@@ -322,7 +322,7 @@ public class MappingAPI {
 
                                 }
                             } else if (PERMISSION_NAME.equals("null") && !MANIF_APP_TYPE.equals("null")) {
-                                if (MANIF_APP_TYPE.equals("PROVIDE")) {
+                                if (MANIF_APP_TYPE.equals("PROVIDER")) {
                                     //remove provider
                                     changeDeprecatedMethod(gradleDetails,manifestDetails,javaLineDetailslines, javaLineDetails ,true,false,false,false,false);
 
@@ -388,9 +388,9 @@ public class MappingAPI {
         try {
 
             if(METHOD_PARAMETER.equals("same")){
-                String newLine = "\t"+NEW_METHOD.trim()+sameParameter+";";
-                String checkline = NEW_METHOD.trim()+sameParameter;
-                if(Fullline.contains(checkline)){
+                String newLine = "\t"+NEW_METHOD.trim()+"("+sameParameter+");";
+                String checkline = NEW_METHOD.trim();
+                if(Fullline.contains(checkline) && Fullline.contains(sameParameter)){
 
                 }else {
                     if(ShowOnly){
@@ -400,7 +400,7 @@ public class MappingAPI {
                         lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), COMMENT+"  */",false);
                         lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "Refer this link to know more " + REFER_LINK,false);
                         lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "/*        Code Generated by AndroMigrate           ",false);
-                        //  CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
+                        CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
                     }
                 }
 
@@ -427,9 +427,9 @@ public class MappingAPI {
             else if(METHOD_PARAMETER.equals("addreplace")){
                 String parameter = PARAMETER.replace("addreplace",sameParameter);
                 String newLine = NEW_METHOD.trim()+parameter+";";
-                String checkline = NEW_METHOD.trim()+parameter;
+                String checkline = NEW_METHOD.trim();
 
-                if(Fullline.contains(checkline)){
+                if(Fullline.contains(checkline) && Fullline.contains(parameter)){
 
                 }else {
                     if(ShowOnly){
@@ -439,7 +439,7 @@ public class MappingAPI {
                         lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), COMMENT + "  */", false);
                         lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), " Refer this link to know more " + REFER_LINK, false);
                         lineEditor.addNewLine(details.getFileP(), details.getLineNumber(), "/*        Code Generated by AndroMigrate           ", false);
-                        //   CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
+                        CurrentJavaFile = codeGenerator.readJavaFile(details.getFileP());
                     }
                 }
 
@@ -486,7 +486,7 @@ public class MappingAPI {
             }
 
             if(provider){
-                if(MANIF_APP_TYPE.equals("PROVIDE")){
+                if(MANIF_APP_TYPE.equals("PROVIDER")){
                     int removeLine = 0;
                     boolean isProvideAdded = false;
                     for (int i = 0; i < MainManifDetails.getCodeDetails().size(); i++) {
@@ -600,7 +600,7 @@ public class MappingAPI {
             }
 
             if(provider){
-                if(MANIF_APP_TYPE.equals("PROVIDE")){
+                if(MANIF_APP_TYPE.equals("PROVIDER")){
                     int Applicationline = MainManifDetails.getAppLineDetails().get("appLine");
 
                     boolean isProvideAdded = true;

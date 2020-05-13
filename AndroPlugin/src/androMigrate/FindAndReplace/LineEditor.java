@@ -9,7 +9,7 @@ public class LineEditor {
     public void addNewLine (File inFile, int lineno, String lineToBeInserted, boolean ismethod)
             throws Exception {
         // temp file
-        File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/2nd Semester/FYP/ProjectFile/src/main/java/TemptFile/tempt.java");
+        File outFile = new File("/Users/nazoorahamed/Documents/University Files/4th Year/w1654449code/AndroPlugin/src/androMigrate/TemptFile/tempt.java");
 
         // input
         FileInputStream fis = new FileInputStream(inFile);
@@ -51,7 +51,7 @@ public class LineEditor {
 
 
     public void removeLine(File inFile, int lineno, boolean ismethod) throws Exception{
-        File outFile = new File("/Users/nazoorahamed/Desktop/4th Year/2nd Semester/FYP/ProjectFile/src/main/java/TemptFile/tempt.java");
+        File outFile = new File("/Users/nazoorahamed/Documents/University Files/4th Year/w1654449code/AndroPlugin/src/androMigrate/TemptFile/tempt.java");
 
         // input
         FileInputStream fis = new FileInputStream(inFile);
