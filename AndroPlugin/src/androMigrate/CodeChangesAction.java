@@ -17,7 +17,6 @@ public class CodeChangesAction extends AnAction {
         System.out.println(e.getProject().getBasePath());
         MainBoard mainBoard = new MainBoard();
         Boolean isInitialized=  mainBoard.InitialteMigration(e.getProject().getBasePath());
-        String getfirstletter = mainBoard.getString();
         e.getProject().save();
 
         if(new showChangesWrapper(showOnlyChanges).showAndGet()){

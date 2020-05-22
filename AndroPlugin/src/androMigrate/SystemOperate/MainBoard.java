@@ -29,7 +29,7 @@ public class MainBoard {
             baseReportFile = fname+"/MigrationReport.txt";
             File creatFile = new File(baseReportFile);
             creatFile.createNewFile(); // if file already exists will do nothing
-            FileOutputStream oFile = new FileOutputStream(creatFile, false);
+            //FileOutputStream oFile = new FileOutputStream(creatFile, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
